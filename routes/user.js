@@ -15,7 +15,7 @@ userRouter.post("/signup", async function(req, res) {
     const requiredbody=z.object({
         email:z.string().email(),
         password:z.string().min(6).max(10),
-        firstname:z.string().min(3),
+        firstnam:z.string().min(3),
         lastname:z.string()
     })
     const parsebodywithsucess=requiredbody.safeParse(req.body);
@@ -29,7 +29,7 @@ userRouter.post("/signup", async function(req, res) {
     }
     const email=req.body.email;
     const password=req.body.password;
-    const firstname=req.body.firstname;
+    const firstnam=req.body.firstnam;
     const lastname=req.body.lastname;
     let error=false;
     //Todo ZOD validation
@@ -41,7 +41,7 @@ userRouter.post("/signup", async function(req, res) {
         await userModel.create({
             email: email,
             password: hashedpassword,
-            firstname: firstname,
+            firstnam: firstnam,
             lastname: lastname
         })
    }

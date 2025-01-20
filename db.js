@@ -7,15 +7,15 @@ const ObjectId =mongoose.Types.ObjectId;
 const userSchema= new Schema({
     email: {type: String,unique: true},
     password: String,
-    firstnam: String,
-    lastname: String,
+    firstname: String,
+    lastname: String
 });
 
 const adminSchema =new Schema({
     email: {type: String,unique: true},
     password: String,
-    firstnam: String,
-    lastname: String,
+    firstname: String,
+    lastname: String
 });
 
 const courseSchema =new Schema({
