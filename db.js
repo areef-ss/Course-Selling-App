@@ -1,7 +1,6 @@
 const { Schema, default: mongoose } = require("mongoose");
 const ObjectId =mongoose.Types.ObjectId;
-console.log("conneccted to");
-mongoose.connect("mongodb+srv://areef0463:LgBYlfwFd9b9h75V@cluster0.8z2a8.mongodb.net/Course-App")
+//console.log("conneccted to");
 
 
 
@@ -39,7 +38,7 @@ const adminModel = mongoose.model("admin",adminSchema);
 const courseModel = mongoose.model("course",courseSchema);
 const purchaseModel = mongoose.model("purchase",purchaseSchema);
 
-module.export={
+module.exports={
     userModel,
     adminModel,
     courseModel,
