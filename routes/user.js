@@ -3,9 +3,10 @@ const userRouter = Router();
 const bcrypt=require('bcrypt')
 const {z}=require('zod');
 const jwt=require('jsonwebtoken');
-const jwt_secret='areefsecret';
+//const jwt_secret='areefsecret';
 const mangoose = require('mongoose');
 const userModel = require('../db').userModel;
+const {JWT_USER_SECRET}=require("../config");
 
 
 
@@ -15,7 +16,7 @@ userRouter.post("/signup", async function(req, res) {
     const requiredbody=z.object({
         email:z.string().email(),
         password:z.string().min(6).max(10),
-        firstnam:z.string().min(3),
+        firstname:z.string().min(3),
         lastname:z.string()
     })
     const parsebodywithsucess=requiredbody.safeParse(req.body);
@@ -29,7 +30,7 @@ userRouter.post("/signup", async function(req, res) {
     }
     const email=req.body.email;
     const password=req.body.password;
-    const firstnam=req.body.firstnam;
+    const firstname=req.body.firstname;
     const lastname=req.body.lastname;
     let error=false;
     //Todo ZOD validation
@@ -41,7 +42,7 @@ userRouter.post("/signup", async function(req, res) {
         await userModel.create({
             email: email,
             password: hashedpassword,
-            firstnam: firstnam,
+            firstname: firstname,
             lastname: lastname
         })
    }
@@ -84,7 +85,7 @@ userRouter.post("/signin", async function (req, res) {
             const token = jwt.sign({
                 id: user._id.toString()
 
-            }, jwt_secret);
+            }, JWT_USER_SECRET);
             res.json({
                 message: "Signin succeeded",
                 token: token
